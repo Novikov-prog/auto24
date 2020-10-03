@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Response, status
 import aiosqlite
-
+from pydantic import BaseModel
 
 
 app  = FastAPI()
