@@ -7,13 +7,13 @@ app  = FastAPI()
 
 @app.on_event("startup")
 async def startup():
-    app.db_connection = await aiosqlite.connect('voitures_5_tables.db')
+    app.db_connection = await aiosqlite.connect('marques.db')
 
 @app.on_event("shutdown")
 async def shutdown():
   await app.db_connection.close()
 
-@app.get("/marque")
+@app.get("/marques")
 async def get_marques(page: int = 0, per_page: int = 10):
   app.db_connection.row_factory = aiosqlite.Row
   cursor = await app.db_connection.execute("SELECT * FROM table1 ORDER BY annonce_id LIMIT :per_page OFFSET :per_page*:page",
